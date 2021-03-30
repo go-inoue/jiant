@@ -40,7 +40,7 @@ class Example(BaseExample):
                 tokenized = [tokenizer.unk_token]
             all_tokenized_tokens += tokenized
             padding_length = len(tokenized) - 1
-            labels += [CAMeLposTask.LABEL_TO_ID.get(pos, None)] + [None] * padding_length
+            labels += [CAMeLcasTask.LABEL_TO_ID.get(pos, None)] + [None] * padding_length
             label_mask += [1] + [0] * padding_length
 
         return TokenizedExample(
@@ -48,7 +48,7 @@ class Example(BaseExample):
         )
 
 
-class CAMeLposTask(UdposTask):
+class CAMeLcasTask(UdposTask):
 
     Example = Example
     TokenizedExample = Example
