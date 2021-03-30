@@ -87,6 +87,23 @@ from jiant.tasks.lib.mcscript import MCScriptTask
 from jiant.tasks.lib.arct import ArctTask
 from jiant.tasks.lib.winogrande import WinograndeTask
 from jiant.tasks.lib.piqa import PiqaTask
+from jiant.tasks.lib.camel.pos import CAMeLposTask
+from jiant.tasks.lib.camel.prc3 import CAMeLprc3Task
+from jiant.tasks.lib.camel.prc2 import CAMeLprc2Task
+from jiant.tasks.lib.camel.prc1 import CAMeLprc1Task
+from jiant.tasks.lib.camel.prc0 import CAMeLprc0Task
+from jiant.tasks.lib.camel.per import CAMeLperTask
+from jiant.tasks.lib.camel.asp import CAMeLaspTask
+from jiant.tasks.lib.camel.vox import CAMeLvoxTask
+from jiant.tasks.lib.camel.mod import CAMeLmodTask
+from jiant.tasks.lib.camel.form_gen import CAMeLform_genTask
+from jiant.tasks.lib.camel.gen import CAMeLgenTask
+from jiant.tasks.lib.camel.form_num import CAMeLform_numTask
+from jiant.tasks.lib.camel.num import CAMeLnumTask
+from jiant.tasks.lib.camel.stt import CAMeLsttTask
+from jiant.tasks.lib.camel.cas import CAMeLcasTask
+from jiant.tasks.lib.camel.enc0 import CAMeLenc0Task
+from jiant.tasks.lib.camel.rat import CAMeLratTask
 
 from jiant.tasks.core import Task
 from jiant.utils.python.io import read_json
@@ -179,6 +196,23 @@ TASK_DICT = {
     "arct": ArctTask,
     "winogrande": WinograndeTask,
     "piqa": PiqaTask,
+    "camel_pos": CAMeLposTask,
+    "camel_prc3": CAMeLprc3Task,
+    "camel_prc2": CAMeLprc2Task,
+    "camel_prc1": CAMeLprc1Task,
+    "camel_prc0": CAMeLprc0Task,
+    "camel_per": CAMeLperTask,
+    "camel_asp": CAMeLaspTask,
+    "camel_vox": CAMeLvoxTask,
+    "camel_mod": CAMeLmodTask,
+    "camel_form_gen": CAMeLform_genTask,
+    "camel_gen": CAMeLgenTask,
+    "camel_form_num": CAMeLform_numTask,
+    "camel_num": CAMeLnumTask,
+    "camel_stt": CAMeLsttTask,
+    "camel_cas": CAMeLcasTask,
+    "camel_enc0": CAMeLenc0Task,
+    "camel_rat": CAMeLratTask,
 }
 
 
