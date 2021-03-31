@@ -949,6 +949,61 @@ class Bucc2018EvaluationScheme(BaseEvaluationScheme):
         return Metrics(major=result["F1"], minor=result,)
 
 
+class AccuracyTaggingEvaluationScheme(BaseEvaluationScheme):
+    def get_accumulator(self):
+        return ConcatenateLogitsAccumulator()
+
+    @classmethod
+    def get_labels_from_cache_and_examples(cls, task, cache, examples):
+        labels = []
+        for datum in cache.iter_all():
+            label_mask = datum["data_row"].label_mask.astype(bool)
+            pos_list = [
+                task.ID_TO_LABEL[pos_id] for pos_id in datum["data_row"].label_ids[label_mask]
+            ]
+            label = {
+                "pos_list": pos_list,
+                "label_mask": label_mask,
+            }
+            labels.append(label)
+            assert len(pos_list) == label_mask.sum()
+        return labels
+
+    def get_preds_from_accumulator(self, task, accumulator):
+        logits = accumulator.get_accumulated()
+        return np.argmax(logits, axis=-1)
+
+    def compute_metrics_from_accumulator(
+        self, task, accumulator: ConcatenateLogitsAccumulator, tokenizer, labels: list
+    ) -> Metrics:
+        preds = self.get_preds_from_accumulator(task=task, accumulator=accumulator)
+        return self.compute_metrics_from_preds_and_labels(task=task, preds=preds, labels=labels,)
+
+    @classmethod
+    def compute_metrics_from_preds_and_labels(cls, task, preds, labels):
+        label_mask = np.stack([row["label_mask"] for row in labels])
+
+        # Account for smart-truncate
+        assert (label_mask[:, preds.shape[-1] :] == 0).all()
+        label_mask = label_mask[:, : preds.shape[-1]]
+
+        labels_for_eval = [label["pos_list"] for label in labels]
+        preds_for_eval = []
+        assert len(labels) == preds.shape[0]
+        for i in range(len(labels)):
+            relevant_preds = preds[i][label_mask[i]]
+            relevant_preds_pos = [task.ID_TO_LABEL[pos_id] for pos_id in relevant_preds]
+            preds_for_eval.append(relevant_preds_pos)
+
+        minor = {
+            "accuracy": seqeval_metrics.accuracy_score(labels_for_eval, preds_for_eval),
+            "precision": seqeval_metrics.precision_score(labels_for_eval, preds_for_eval),
+            "recall": seqeval_metrics.recall_score(labels_for_eval, preds_for_eval),
+            "f1": seqeval_metrics.f1_score(labels_for_eval, preds_for_eval),
+        }
+        return Metrics(major=minor["accuracy"], minor=minor,)
+
+
 def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
     # TODO: move logic to task?  (issue #1182)
     if isinstance(
@@ -1062,11 +1117,11 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
         return MLMPremaskedEvaluationScheme()
     elif isinstance(task, (tasks.QAMRTask, tasks.QASRLTask)):
         return SpanPredictionF1andEMScheme()
+    elif isinstance(task, (tasks.UdposTask, tasks.PanxTask)):
+        return F1TaggingEvaluationScheme()
     elif isinstance(
         task,
         (
-            tasks.UdposTask,
-            tasks.PanxTask,
             tasks.CAMeLposTask,
             tasks.CAMeLprc3Task,
             tasks.CAMeLprc2Task,
@@ -1086,7 +1141,7 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
             tasks.CAMeLratTask,
         ),
     ):
-        return F1TaggingEvaluationScheme()
+        return AccuracyTaggingEvaluationScheme()
     elif isinstance(task, tasks.Bucc2018Task):
         return Bucc2018EvaluationScheme()
     elif isinstance(task, tasks.TatoebaTask):
