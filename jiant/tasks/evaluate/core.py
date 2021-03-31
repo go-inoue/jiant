@@ -1032,23 +1032,6 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
             tasks.DepTask,
             tasks.PosTask,
             tasks.NonterminalTask,
-            tasks.CAMeLposTask,
-            tasks.CAMeLprc3Task,
-            tasks.CAMeLprc2Task,
-            tasks.CAMeLprc1Task,
-            tasks.CAMeLprc0Task,
-            tasks.CAMeLperTask,
-            tasks.CAMeLaspTask,
-            tasks.CAMeLvoxTask,
-            tasks.CAMeLmodTask,
-            tasks.CAMeLform_genTask,
-            tasks.CAMeLgenTask,
-            tasks.CAMeLform_numTask,
-            tasks.CAMeLnumTask,
-            tasks.CAMeLsttTask,
-            tasks.CAMeLcasTask,
-            tasks.CAMeLenc0Task,
-            tasks.CAMeLratTask,
         ),
     ):
         return MultiLabelAccAndF1EvaluationScheme()
@@ -1079,7 +1062,30 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
         return MLMPremaskedEvaluationScheme()
     elif isinstance(task, (tasks.QAMRTask, tasks.QASRLTask)):
         return SpanPredictionF1andEMScheme()
-    elif isinstance(task, (tasks.UdposTask, tasks.PanxTask)):
+    elif isinstance(
+        task,
+        (
+            tasks.UdposTask,
+            tasks.PanxTask,
+            tasks.CAMeLposTask,
+            tasks.CAMeLprc3Task,
+            tasks.CAMeLprc2Task,
+            tasks.CAMeLprc1Task,
+            tasks.CAMeLprc0Task,
+            tasks.CAMeLperTask,
+            tasks.CAMeLaspTask,
+            tasks.CAMeLvoxTask,
+            tasks.CAMeLmodTask,
+            tasks.CAMeLform_genTask,
+            tasks.CAMeLgenTask,
+            tasks.CAMeLform_numTask,
+            tasks.CAMeLnumTask,
+            tasks.CAMeLsttTask,
+            tasks.CAMeLcasTask,
+            tasks.CAMeLenc0Task,
+            tasks.CAMeLratTask,
+        ),
+    ):
         return F1TaggingEvaluationScheme()
     elif isinstance(task, tasks.Bucc2018Task):
         return Bucc2018EvaluationScheme()
