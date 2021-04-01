@@ -146,6 +146,19 @@ class CAMeLform_genTask(Task):
         super().__init__(name=name, path_dict=path_dict)
         self.language = language
 
+    @property
+    def num_labels(self):
+        return len(self.LABELS)
+
+    def get_train_examples(self):
+        return self._create_examples(data_path=self.path_dict["train"], set_type="train")
+
+    def get_val_examples(self):
+        return self._create_examples(data_path=self.path_dict["val"], set_type="val")
+
+    def get_test_examples(self):
+        return self._create_examples(data_path=self.path_dict["test"], set_type="test")
+
     @classmethod
     def _create_examples(cls, data_path, set_type):
         curr_token_list, curr_pos_list = [], []
