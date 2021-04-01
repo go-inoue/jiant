@@ -1,28 +1,30 @@
+import numpy as np
+import torch
 from dataclasses import dataclass
-from typing import List
+from typing import List, Union
 
 from jiant.tasks.core import (
     BaseExample,
+    BaseTokenizedExample,
+    BaseDataRow,
+    BatchMixin,
+    Task,
     TaskTypes,
 )
-
 from jiant.tasks.lib.templates.shared import (
     labels_to_bimap,
+    create_input_set_from_tokens_and_segments,
+    construct_single_input_tokens_and_segment_ids,
+    pad_single_with_feat_spec,
 )
 from jiant.utils.python.datastructures import zip_equal
 from jiant.utils.python.io import read_file_lines
-
-from jiant.tasks.lib.udpos import (
-    UdposTask,
-    DataRow,
-    Batch,
-    TokenizedExample,
-)
 
 ARBITRARY_OVERLY_LONG_WORD_CONSTRAINT = 100
 # In a rare number of cases, a single word (usually something like a mis-processed URL)
 #  is overly long, and should not be treated as a real multi-subword-token word.
 # In these cases, we simply replace it with an UNK token.
+
 
 @dataclass
 class Example(BaseExample):
@@ -50,7 +52,81 @@ class Example(BaseExample):
         )
 
 
-class CAMeLaspTask(UdposTask):
+@dataclass
+class TokenizedExample(BaseTokenizedExample):
+    guid: str
+    tokens: List
+    labels: List[Union[int, None]]
+    label_mask: List[int]
+
+    def featurize(self, tokenizer, feat_spec):
+        unpadded_inputs = construct_single_input_tokens_and_segment_ids(
+            input_tokens=self.tokens, tokenizer=tokenizer, feat_spec=feat_spec,
+        )
+        input_set = create_input_set_from_tokens_and_segments(
+            unpadded_tokens=unpadded_inputs.unpadded_tokens,
+            unpadded_segment_ids=unpadded_inputs.unpadded_segment_ids,
+            tokenizer=tokenizer,
+            feat_spec=feat_spec,
+        )
+
+        # Replicate padding / additional tokens for the label ids and mask
+        if feat_spec.sep_token_extra:
+            label_suffix = [None, None]
+            mask_suffix = [0, 0]
+            special_tokens_count = 3  # CLS, SEP-SEP
+        else:
+            label_suffix = [None]
+            mask_suffix = [0]
+            special_tokens_count = 2  # CLS, SEP
+        unpadded_labels = (
+            [None] + self.labels[: feat_spec.max_seq_length - special_tokens_count] + label_suffix
+        )
+        unpadded_labels = [i if i is not None else -1 for i in unpadded_labels]
+        unpadded_label_mask = (
+            [0] + self.label_mask[: feat_spec.max_seq_length - special_tokens_count] + mask_suffix
+        )
+
+        padded_labels = pad_single_with_feat_spec(
+            ls=unpadded_labels, feat_spec=feat_spec, pad_idx=-1,
+        )
+        padded_label_mask = pad_single_with_feat_spec(
+            ls=unpadded_label_mask, feat_spec=feat_spec, pad_idx=0,
+        )
+
+        return DataRow(
+            guid=self.guid,
+            input_ids=np.array(input_set.input_ids),
+            input_mask=np.array(input_set.input_mask),
+            segment_ids=np.array(input_set.segment_ids),
+            label_ids=np.array(padded_labels),
+            label_mask=np.array(padded_label_mask),
+            tokens=unpadded_inputs.unpadded_tokens,
+        )
+
+
+@dataclass
+class DataRow(BaseDataRow):
+    guid: str
+    input_ids: np.ndarray
+    input_mask: np.ndarray
+    segment_ids: np.ndarray
+    label_ids: np.ndarray
+    label_mask: np.ndarray
+    tokens: list
+
+
+@dataclass
+class Batch(BatchMixin):
+    input_ids: torch.LongTensor
+    input_mask: torch.LongTensor
+    segment_ids: torch.LongTensor
+    label_ids: torch.LongTensor
+    label_mask: torch.LongTensor
+    tokens: list
+
+
+class CAMeLaspTask(Task):
 
     Example = Example
     TokenizedExample = Example
@@ -66,6 +142,10 @@ class CAMeLaspTask(UdposTask):
     ]
 
     LABEL_TO_ID, ID_TO_LABEL = labels_to_bimap(LABELS)
+
+    def __init__(self, name, path_dict, language):
+        super().__init__(name=name, path_dict=path_dict)
+        self.language = language
 
     @property
     def num_labels(self):
