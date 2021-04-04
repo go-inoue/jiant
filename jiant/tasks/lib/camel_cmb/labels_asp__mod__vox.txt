@@ -1,0 +1,14 @@
+asp:c__mod:i__vox:a
+asp:i__mod:i__vox:a
+asp:i__mod:i__vox:p
+asp:i__mod:j__vox:a
+asp:i__mod:j__vox:p
+asp:i__mod:s__vox:a
+asp:i__mod:s__vox:p
+asp:i__mod:u__vox:a
+asp:i__mod:u__vox:p
+asp:na__mod:na__vox:na
+asp:p__mod:i__vox:a
+asp:p__mod:i__vox:p
+asp:p__mod:i__vox:u
+asp:p__mod:u__vox:a

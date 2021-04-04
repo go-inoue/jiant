@@ -1122,6 +1122,7 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
     elif isinstance(
         task,
         (
+            # CAMeL
             tasks.CAMeLposTask,
             tasks.CAMeLprc3Task,
             tasks.CAMeLprc2Task,
@@ -1139,6 +1140,23 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
             tasks.CAMeLcasTask,
             tasks.CAMeLenc0Task,
             tasks.CAMeLratTask,
+            # CAMeL combination
+            tasks.CAMeLper__gen__numTask,
+            tasks.CAMeLper__form_gen__form_numTask,
+            tasks.CAMeLasp__mod__voxTask,
+            tasks.CAMeLcas__sttTask,
+            tasks.CAMeLprc3__prc2__prc1__prc0__enc0Task,
+            tasks.CAMeLgen__num__ratTask,
+            tasks.CAMeLpos__per__gen__numTask,
+            tasks.CAMeLpos__per__form_gen__form_numTask,
+            tasks.CAMeLpos__asp__mod__voxTask,
+            tasks.CAMeLpos__cas__sttTask,
+            tasks.CAMeLpos__prc3__prc2__prc1__prc0__enc0Task,
+            tasks.CAMeLpos__gen__num__ratTask,
+            tasks.CAMeLper__gen__num__ratTask,
+            tasks.CAMeLpos__per__gen__num__ratTask,
+            tasks.CAMeLTAGS17Task,
+            tasks.CAMeLTAGS14Task,
         ),
     ):
         return AccuracyTaggingEvaluationScheme()

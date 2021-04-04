@@ -87,6 +87,7 @@ from jiant.tasks.lib.mcscript import MCScriptTask
 from jiant.tasks.lib.arct import ArctTask
 from jiant.tasks.lib.winogrande import WinograndeTask
 from jiant.tasks.lib.piqa import PiqaTask
+# CAMeL
 from jiant.tasks.lib.camel.pos import CAMeLposTask
 from jiant.tasks.lib.camel.prc3 import CAMeLprc3Task
 from jiant.tasks.lib.camel.prc2 import CAMeLprc2Task
@@ -104,6 +105,23 @@ from jiant.tasks.lib.camel.stt import CAMeLsttTask
 from jiant.tasks.lib.camel.cas import CAMeLcasTask
 from jiant.tasks.lib.camel.enc0 import CAMeLenc0Task
 from jiant.tasks.lib.camel.rat import CAMeLratTask
+# CAMeL combination
+from jiant.tasks.lib.camel_cmb.per__gen__num import CAMeLper__gen__numTask
+from jiant.tasks.lib.camel_cmb.per__form_gen__form_num import CAMeLper__form_gen__form_numTask
+from jiant.tasks.lib.camel_cmb.asp__mod__vox import CAMeLasp__mod__voxTask
+from jiant.tasks.lib.camel_cmb.cas__stt import CAMeLcas__sttTask
+from jiant.tasks.lib.camel_cmb.prc3__prc2__prc1__prc0__enc0 import CAMeLprc3__prc2__prc1__prc0__enc0Task
+from jiant.tasks.lib.camel_cmb.gen__num__rat import CAMeLgen__num__ratTask
+from jiant.tasks.lib.camel_cmb.pos__per__gen__num import CAMeLpos__per__gen__numTask
+from jiant.tasks.lib.camel_cmb.pos__per__form_gen__form_num import CAMeLpos__per__form_gen__form_numTask
+from jiant.tasks.lib.camel_cmb.pos__asp__mod__vox import CAMeLpos__asp__mod__voxTask
+from jiant.tasks.lib.camel_cmb.pos__cas__stt import CAMeLpos__cas__sttTask
+from jiant.tasks.lib.camel_cmb.pos__prc3__prc2__prc1__prc0__enc0 import CAMeLpos__prc3__prc2__prc1__prc0__enc0Task
+from jiant.tasks.lib.camel_cmb.pos__gen__num__rat import CAMeLpos__gen__num__ratTask
+from jiant.tasks.lib.camel_cmb.per__gen__num__rat import CAMeLper__gen__num__ratTask
+from jiant.tasks.lib.camel_cmb.pos__per__gen__num__rat import CAMeLpos__per__gen__num__ratTask
+from jiant.tasks.lib.camel_cmb.tags17 import CAMeLTAGS17Task
+from jiant.tasks.lib.camel_cmb.tags14 import CAMeLTAGS14Task
 
 from jiant.tasks.core import Task
 from jiant.utils.python.io import read_json
@@ -196,6 +214,7 @@ TASK_DICT = {
     "arct": ArctTask,
     "winogrande": WinograndeTask,
     "piqa": PiqaTask,
+    # CAMeL
     "camel_pos": CAMeLposTask,
     "camel_prc3": CAMeLprc3Task,
     "camel_prc2": CAMeLprc2Task,
@@ -213,6 +232,23 @@ TASK_DICT = {
     "camel_cas": CAMeLcasTask,
     "camel_enc0": CAMeLenc0Task,
     "camel_rat": CAMeLratTask,
+    # CAMeL combination
+    "camel_cmb_per__gen__num": CAMeLper__gen__numTask,
+    "camel_cmb_per__form_gen__form_num": CAMeLper__form_gen__form_numTask,
+    "camel_cmb_asp__mod__vox": CAMeLasp__mod__voxTask,
+    "camel_cmb_cas__stt": CAMeLcas__sttTask,
+    "camel_cmb_prc3__prc2__prc1__prc0__enc0": CAMeLprc3__prc2__prc1__prc0__enc0Task,
+    "camel_cmb_gen__num__rat": CAMeLgen__num__ratTask,
+    "camel_cmb_pos__per__gen__num": CAMeLpos__per__gen__numTask,
+    "camel_cmb_pos__per__form_gen__form_num": CAMeLpos__per__form_gen__form_numTask,
+    "camel_cmb_pos__asp__mod__vox": CAMeLpos__asp__mod__voxTask,
+    "camel_cmb_pos__cas__stt": CAMeLpos__cas__sttTask,
+    "camel_cmb_pos__prc3__prc2__prc1__prc0__enc0": CAMeLpos__prc3__prc2__prc1__prc0__enc0Task,
+    "camel_cmb_pos__gen__num__rat": CAMeLpos__gen__num__ratTask,
+    "camel_cmb_per__gen__num__rat": CAMeLper__gen__num__ratTask,
+    "camel_cmb_pos__per__gen__num__rat": CAMeLpos__per__gen__num__ratTask,
+    "camel_cmb_tags17": CAMeLTAGS17Task,
+    "camel_cmb_tags14": CAMeLTAGS14Task,
 }
 
 
