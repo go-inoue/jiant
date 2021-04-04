@@ -45,7 +45,7 @@ class Example(BaseExample):
                 tokenized = [tokenizer.unk_token]
             all_tokenized_tokens += tokenized
             padding_length = len(tokenized) - 1
-            labels += [CAMeLTAGS14Task.LABEL_TO_ID.get(pos, None)] + [None] * padding_length
+            labels += [CAMeLtags14Task.LABEL_TO_ID.get(pos, None)] + [None] * padding_length
             label_mask += [1] + [0] * padding_length
 
         return TokenizedExample(
@@ -127,7 +127,7 @@ class Batch(BatchMixin):
     tokens: list
 
 
-class CAMeLTAGS14Task(Task):
+class CAMeLtags14Task(Task):
 
     Example = Example
     TokenizedExample = Example
@@ -137,7 +137,7 @@ class CAMeLTAGS14Task(Task):
     TASK_TYPE = TaskTypes.TAGGING
 
     label_path = os.path.join(
-        os.path.dirname(__file__), 'labels_TAGS14.txt'
+        os.path.dirname(__file__), 'labels_tags14.txt'
     )
     with open(label_path, mode='r') as f:
         LABELS = [label.strip() for label in f.readlines()]

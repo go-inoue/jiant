@@ -120,8 +120,8 @@ from jiant.tasks.lib.camel_cmb.pos__prc3__prc2__prc1__prc0__enc0 import CAMeLpos
 from jiant.tasks.lib.camel_cmb.pos__gen__num__rat import CAMeLpos__gen__num__ratTask
 from jiant.tasks.lib.camel_cmb.per__gen__num__rat import CAMeLper__gen__num__ratTask
 from jiant.tasks.lib.camel_cmb.pos__per__gen__num__rat import CAMeLpos__per__gen__num__ratTask
-from jiant.tasks.lib.camel_cmb.tags17 import CAMeLTAGS17Task
-from jiant.tasks.lib.camel_cmb.tags14 import CAMeLTAGS14Task
+from jiant.tasks.lib.camel_cmb.tags17 import CAMeLtags17Task
+from jiant.tasks.lib.camel_cmb.tags14 import CAMeLtags14Task
 
 from jiant.tasks.core import Task
 from jiant.utils.python.io import read_json
@@ -247,8 +247,8 @@ TASK_DICT = {
     "camel_cmb_pos__gen__num__rat": CAMeLpos__gen__num__ratTask,
     "camel_cmb_per__gen__num__rat": CAMeLper__gen__num__ratTask,
     "camel_cmb_pos__per__gen__num__rat": CAMeLpos__per__gen__num__ratTask,
-    "camel_cmb_tags17": CAMeLTAGS17Task,
-    "camel_cmb_tags14": CAMeLTAGS14Task,
+    "camel_cmb_tags17": CAMeLtags17Task,
+    "camel_cmb_tags14": CAMeLtags14Task,
 }
 
 

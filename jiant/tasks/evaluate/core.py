@@ -1155,8 +1155,8 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
             tasks.CAMeLpos__gen__num__ratTask,
             tasks.CAMeLper__gen__num__ratTask,
             tasks.CAMeLpos__per__gen__num__ratTask,
-            tasks.CAMeLTAGS17Task,
-            tasks.CAMeLTAGS14Task,
+            tasks.CAMeLtags17Task,
+            tasks.CAMeLtags14Task,
         ),
     ):
         return AccuracyTaggingEvaluationScheme()
