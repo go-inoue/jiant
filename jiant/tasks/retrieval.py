@@ -122,6 +122,23 @@ from jiant.tasks.lib.camel_cmb.per__gen__num__rat import CAMeLper__gen__num__rat
 from jiant.tasks.lib.camel_cmb.pos__per__gen__num__rat import CAMeLpos__per__gen__num__ratTask
 from jiant.tasks.lib.camel_cmb.tags17 import CAMeLtags17Task
 from jiant.tasks.lib.camel_cmb.tags14 import CAMeLtags14Task
+# CAMeLGLF
+from jiant.tasks.lib.camel_glf.pos import CAMeLGLFposTask
+from jiant.tasks.lib.camel_glf.prc3 import CAMeLGLFprc3Task
+from jiant.tasks.lib.camel_glf.prc2 import CAMeLGLFprc2Task
+from jiant.tasks.lib.camel_glf.prc1 import CAMeLGLFprc1Task
+from jiant.tasks.lib.camel_glf.prc0 import CAMeLGLFprc0Task
+from jiant.tasks.lib.camel_glf.per import CAMeLGLFperTask
+from jiant.tasks.lib.camel_glf.asp import CAMeLGLFaspTask
+from jiant.tasks.lib.camel_glf.vox import CAMeLGLFvoxTask
+from jiant.tasks.lib.camel_glf.mod import CAMeLGLFmodTask
+from jiant.tasks.lib.camel_glf.form_gen import CAMeLGLFform_genTask
+from jiant.tasks.lib.camel_glf.form_num import CAMeLGLFform_numTask
+from jiant.tasks.lib.camel_glf.stt import CAMeLGLFsttTask
+from jiant.tasks.lib.camel_glf.cas import CAMeLGLFcasTask
+from jiant.tasks.lib.camel_glf.enc0 import CAMeLGLFenc0Task
+from jiant.tasks.lib.camel_glf.enc1 import CAMeLGLFenc1Task
+from jiant.tasks.lib.camel_glf.enc2 import CAMeLGLFenc2Task
 
 from jiant.tasks.core import Task
 from jiant.utils.python.io import read_json
@@ -249,6 +266,23 @@ TASK_DICT = {
     "camel_cmb_pos__per__gen__num__rat": CAMeLpos__per__gen__num__ratTask,
     "camel_cmb_tags17": CAMeLtags17Task,
     "camel_cmb_tags14": CAMeLtags14Task,
+    # CAMeLGLF
+    "camel_glf_pos": CAMeLGLFposTask,
+    "camel_glf_prc3": CAMeLGLFprc3Task,
+    "camel_glf_prc2": CAMeLGLFprc2Task,
+    "camel_glf_prc1": CAMeLGLFprc1Task,
+    "camel_glf_prc0": CAMeLGLFprc0Task,
+    "camel_glf_per": CAMeLGLFperTask,
+    "camel_glf_asp": CAMeLGLFaspTask,
+    "camel_glf_vox": CAMeLGLFvoxTask,
+    "camel_glf_mod": CAMeLGLFmodTask,
+    "camel_glf_form_gen": CAMeLGLFform_genTask,
+    "camel_glf_form_num": CAMeLGLFform_numTask,
+    "camel_glf_stt": CAMeLGLFsttTask,
+    "camel_glf_cas": CAMeLGLFcasTask,
+    "camel_glf_enc0": CAMeLGLFenc0Task,
+    "camel_glf_enc1": CAMeLGLFenc1Task,
+    "camel_glf_enc2": CAMeLGLFenc2Task,
 }
 
 
