@@ -171,13 +171,13 @@ class CAMeLgenTask(Task):
             data_line = data_line.strip()
             if data_line:
                 if set_type == "test":
-                    line_tokens = data_line.split("\t")
+                    line_tokens = data_line.split(" ")
                     if len(line_tokens) == 2:
                         token, pos = line_tokens
                     else:
                         token, pos = data_line, None
                 else:
-                    token, pos = data_line.split("\t")
+                    token, pos = data_line.split(" ")
                 curr_token_list.append(token)
                 curr_pos_list.append(pos)
             else:
