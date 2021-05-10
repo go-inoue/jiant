@@ -139,6 +139,41 @@ from jiant.tasks.lib.camel_glf.cas import CAMeLGLFcasTask
 from jiant.tasks.lib.camel_glf.enc0 import CAMeLGLFenc0Task
 from jiant.tasks.lib.camel_glf.enc1 import CAMeLGLFenc1Task
 from jiant.tasks.lib.camel_glf.enc2 import CAMeLGLFenc2Task
+# CAMeLEGY
+from jiant.tasks.lib.camel_egy.pos import CAMeLEGYposTask
+from jiant.tasks.lib.camel_egy.prc3 import CAMeLEGYprc3Task
+from jiant.tasks.lib.camel_egy.prc2 import CAMeLEGYprc2Task
+from jiant.tasks.lib.camel_egy.prc1 import CAMeLEGYprc1Task
+from jiant.tasks.lib.camel_egy.prc0 import CAMeLEGYprc0Task
+from jiant.tasks.lib.camel_egy.per import CAMeLEGYperTask
+from jiant.tasks.lib.camel_egy.asp import CAMeLEGYaspTask
+from jiant.tasks.lib.camel_egy.vox import CAMeLEGYvoxTask
+from jiant.tasks.lib.camel_egy.mod import CAMeLEGYmodTask
+from jiant.tasks.lib.camel_egy.form_gen import CAMeLEGYform_genTask
+from jiant.tasks.lib.camel_egy.form_num import CAMeLEGYform_numTask
+from jiant.tasks.lib.camel_egy.stt import CAMeLEGYsttTask
+from jiant.tasks.lib.camel_egy.cas import CAMeLEGYcasTask
+from jiant.tasks.lib.camel_egy.enc0 import CAMeLEGYenc0Task
+from jiant.tasks.lib.camel_egy.enc1 import CAMeLEGYenc1Task
+from jiant.tasks.lib.camel_egy.enc2 import CAMeLEGYenc2Task
+# CAMeLLEV
+from jiant.tasks.lib.camel_lev.pos import CAMeLLEVposTask
+from jiant.tasks.lib.camel_lev.prc3 import CAMeLLEVprc3Task
+from jiant.tasks.lib.camel_lev.prc2 import CAMeLLEVprc2Task
+from jiant.tasks.lib.camel_lev.prc1 import CAMeLLEVprc1Task
+from jiant.tasks.lib.camel_lev.prc0 import CAMeLLEVprc0Task
+from jiant.tasks.lib.camel_lev.per import CAMeLLEVperTask
+from jiant.tasks.lib.camel_lev.asp import CAMeLLEVaspTask
+from jiant.tasks.lib.camel_lev.vox import CAMeLLEVvoxTask
+from jiant.tasks.lib.camel_lev.mod import CAMeLLEVmodTask
+from jiant.tasks.lib.camel_lev.form_gen import CAMeLLEVform_genTask
+from jiant.tasks.lib.camel_lev.form_num import CAMeLLEVform_numTask
+from jiant.tasks.lib.camel_lev.stt import CAMeLLEVsttTask
+from jiant.tasks.lib.camel_lev.cas import CAMeLLEVcasTask
+from jiant.tasks.lib.camel_lev.enc0 import CAMeLLEVenc0Task
+from jiant.tasks.lib.camel_lev.enc1 import CAMeLLEVenc1Task
+from jiant.tasks.lib.camel_lev.enc2 import CAMeLLEVenc2Task
+
 
 from jiant.tasks.core import Task
 from jiant.utils.python.io import read_json
